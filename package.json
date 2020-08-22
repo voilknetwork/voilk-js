@@ -73,5 +73,11 @@
   },
   "contributors": [
     "Bilal Haider (https://github.com/baaluo)"
-  ]
+  ],
+  "directories": {
+    "doc": "doc",
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  }
 }

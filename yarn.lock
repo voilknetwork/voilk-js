@@ -2,16 +2,17 @@
 # yarn lockfile v1
 
 
-"@voilkit/libcrypto@^1.0.1":
+"@baaluo/libcrypto@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@voilkit/libcrypto/-/libcrypto-1.0.1.tgz#c31ab3e5deb667628169b3d54d746b015de31a79"
+  resolved "https://registry.yarnpkg.com/@baaluo/libcrypto/-/libcrypto-1.0.1.tgz#9ff587b27590da074a3fb2168f27eb3e40c8fd5c"
+  integrity sha512-To90UgWxbyc8hETl3OiggpZ4XQebFh+A/hLggnUncbNxEjt01MtGOzeRT/yBlqtm9gMFx7U07qgacWIvzt1s1Q==
 
-"@voilkit/rpc-auth@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@voilkit/rpc-auth/-/rpc-auth-1.1.1.tgz#8f6239e89783d2b251b49e9e1b9486b5d167f944"
-  integrity sha512-Eb8BW3O1y4+/+Dbf+LqGVmgXYqyfHxP9mBlmzkpjXiIepTpxoK90NIGrneqcnEGq0TR2nSt4BVv9Ur9c+hxoig==
+"@baaluo/rpc-auth@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@baaluo/rpc-auth/-/rpc-auth-1.1.3.tgz#5bfe15b42c1070e8307df12aba5beb0478d97135"
+  integrity sha512-W3OuW5W+AjTE7u0RGdfi3O2nGst3JWNCefvQzQmujJP6SR+QAi/+kh/WJbK4jAObAoEWci5BBz4Z0PsRJhrh1w==
   dependencies:
-    "@voilkit/libcrypto" "^1.0.1"
+    "@baaluo/libcrypto" "^1.0.1"
 
 abbrev@1:
   version "1.1.1"
