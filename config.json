@@ -1,10 +1,10 @@
 {
   "transport": "http",
-  "websocket": "wss://gtg.steem.house:8090",
+  "websocket": "wss://api.voilk.com:6991",
   "uri": "https://api.voilk.com",
-  "url": "",
-  "dev_uri": "https://api.steemitdev.com",
-  "stage_uri": "https://api.steemitstage.com",
+  "url": "https://api.voilk.com",
+  "dev_uri": "https://api.voilk.com",
+  "stage_uri": "https://api.voilk.com",
   "address_prefix": "SHR",
   "chain_id": "3bd4b560d3b5e8de9444cb2e40ec7697fc28499dd7d9db9c14449d3576a7d323",
   "useAppbaseApi": true

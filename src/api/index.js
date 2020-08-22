@@ -17,9 +17,9 @@ import {
 } from './transports/http';
 import {
     sign as signRequest
-} from '@steemit/rpc-auth';
+} from '@baaluo/rpc-auth';
 
-class Steem extends EventEmitter {
+class Voilk extends EventEmitter {
     constructor(options = {}) {
         super(options);
         this._setTransport(options);
@@ -183,7 +183,7 @@ class Steem extends EventEmitter {
         this.transport.setOptions(options);
         if( options.hasOwnProperty('useTestNet') )
         {
-          config.set( 'address_prefix', options.useTestNet ? 'TST' : 'STM' )
+          config.set( 'address_prefix', options.useTestNet ? 'TST' : 'SHR' )
         }
     }
 
@@ -347,6 +347,6 @@ class Steem extends EventEmitter {
 }
 
 // Export singleton instance
-const steem = new Steem(config);
-exports = module.exports = steem;
-exports.Steem = Steem;
+const voilk = new Voilk(config);
+exports = module.exports = voilk;
+exports.Voilk = Voilk;

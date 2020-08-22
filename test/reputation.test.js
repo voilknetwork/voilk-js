@@ -1,8 +1,8 @@
 import assert from 'assert';
-import steem from '../src';
+import voilk from '../src';
 
-describe('steem.format.reputation', ()=> {
-    const reputation = steem.formatter.reputation;
+describe('voilk.format.reputation', ()=> {
+    const reputation = voilk.formatter.reputation;
     it('rep 0 => 25', () => {
         assert.equal(reputation(0), 25);
     });

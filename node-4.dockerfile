@@ -1,6 +1,6 @@
 FROM node:4
-ADD ./package.json /steemjs/package.json
-WORKDIR /steemjs
+ADD ./package.json /voilkjs/package.json
+WORKDIR /voilkjs
 RUN npm install
-ADD . /steemjs
+ADD . /voilkjs
 RUN npm test

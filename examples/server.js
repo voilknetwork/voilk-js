@@ -1,32 +1,32 @@
-var steem = require('../lib');
+var voilk = require('../lib');
 
-steem.api.getAccountCount(function(err, result) {
+voilk.api.getAccountCount(function(err, result) {
 	console.log(err, result);
 });
 
-steem.api.getAccounts(['dan'], function(err, result) {
+voilk.api.getAccounts(['voilk'], function(err, result) {
 	console.log(err, result);
-	var reputation = steem.formatter.reputation(result[0].reputation);
+	var reputation = voilk.formatter.reputation(result[0].reputation);
 	console.log(reputation);
 });
 
-steem.api.getState('trending/steemit', function(err, result) {
+voilk.api.getState('trending/voilk', function(err, result) {
 	console.log(err, result);
 });
 
-steem.api.getFollowing('ned', 0, 'blog', 10, function(err, result) {
+voilk.api.getFollowing('bilal', 0, 'blog', 10, function(err, result) {
 	console.log(err, result);
 });
 
-steem.api.getFollowers('dan', 0, 'blog', 10, function(err, result) {
+voilk.api.getFollowers('voilk', 0, 'blog', 10, function(err, result) {
 	console.log(err, result);
 });
 
-steem.api.streamOperations(function(err, result) {
+voilk.api.streamOperations(function(err, result) {
 	console.log(err, result);
 });
 
-steem.api.getDiscussionsByActive({
+voilk.api.getDiscussionsByActive({
   limit: 10,
   start_author: 'thecastle',
   start_permlink: 'this-week-in-level-design-1-22-2017'

@@ -4,24 +4,24 @@ import newDebug from 'debug';
 import broadcastHelpers from './helpers';
 import formatterFactory from '../formatter';
 import operations from './operations';
-import steemApi from '../api';
-import steemAuth from '../auth';
+import voilkApi from '../api';
+import voilkAuth from '../auth';
 import { camelCase } from '../utils';
 
-const debug = newDebug('steem:broadcast');
+const debug = newDebug('voilk:broadcast');
 const noop = function() {}
-const formatter = formatterFactory(steemApi);
+const formatter = formatterFactory(voilkApi);
 
-const steemBroadcast = {};
+const voilkBroadcast = {};
 
 // Base transaction logic -----------------------------------------------------
 
 /**
- * Sign and broadcast transactions on the steem network
+ * Sign and broadcast transactions on the voilk network
  */
 
-steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
-  const resultP = steemBroadcast._prepareTransaction(tx)
+voilkBroadcast.send = function voilkBroadcast$send(tx, privKeys, callback) {
+  const resultP = voilkBroadcast._prepareTransaction(tx)
     .then((transaction) => {
       debug(
         'Signing transaction (transaction, transaction.operations)',
@@ -29,7 +29,7 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
       );
       return Promise.join(
         transaction,
-        steemAuth.signTransaction(transaction, privKeys)
+        voilkAuth.signTransaction(transaction, privKeys)
       );
     })
     .spread((transaction, signedTransaction) => {
@@ -37,7 +37,7 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
         'Broadcasting transaction (transaction, transaction.operations)',
         transaction, transaction.operations
       );
-      return steemApi.broadcastTransactionSynchronousAsync(
+      return voilkApi.broadcastTransactionSynchronousAsync(
         signedTransaction
       ).then((result) => {
         return Object.assign({}, result, signedTransaction);
@@ -47,14 +47,14 @@ steemBroadcast.send = function steemBroadcast$send(tx, privKeys, callback) {
   resultP.nodeify(callback || noop);
 };
 
-steemBroadcast._prepareTransaction = function steemBroadcast$_prepareTransaction(tx) {
-  const propertiesP = steemApi.getDynamicGlobalPropertiesAsync();
+voilkBroadcast._prepareTransaction = function voilkBroadcast$_prepareTransaction(tx) {
+  const propertiesP = voilkApi.getDynamicGlobalPropertiesAsync();
   return propertiesP
     .then((properties) => {
       // Set defaults on the transaction
       const chainDate = new Date(properties.time + 'Z');
       const refBlockNum = (properties.last_irreversible_block_num - 1) & 0xFFFF;
-      return steemApi.getBlockHeaderAsync(properties.last_irreversible_block_num).then((block) => {
+      return voilkApi.getBlockHeaderAsync(properties.last_irreversible_block_num).then((block) => {
         const headBlockId = block ? block.previous : '0000000000000000000000000000000000000000';
         return Object.assign({
           ref_block_num: refBlockNum,
@@ -79,14 +79,14 @@ operations.forEach((operation) => {
     operationParams.indexOf('parent_author') !== -1 &&
     operationParams.indexOf('parent_permlink') !== -1;
 
-  steemBroadcast[`${operationName}With`] =
-    function steemBroadcast$specializedSendWith(wif, options, callback) {
+  voilkBroadcast[`${operationName}With`] =
+    function voilkBroadcast$specializedSendWith(wif, options, callback) {
       debug(`Sending operation "${operationName}" with`, {options, callback});
       const keys = {};
       if (operation.roles && operation.roles.length) {
         keys[operation.roles[0]] = wif; // TODO - Automatically pick a role? Send all?
       }
-      return steemBroadcast.send({
+      return voilkBroadcast.send({
         extensions: [],
         operations: [[operation.operation, Object.assign(
           {},
@@ -101,21 +101,21 @@ operations.forEach((operation) => {
       }, keys, callback);
     };
 
-  steemBroadcast[operationName] =
-    function steemBroadcast$specializedSend(wif, ...args) {
+  voilkBroadcast[operationName] =
+    function voilkBroadcast$specializedSend(wif, ...args) {
       debug(`Parsing operation "${operationName}" with`, {args});
       const options = operationParams.reduce((memo, param, i) => {
         memo[param] = args[i]; // eslint-disable-line no-param-reassign
         return memo;
       }, {});
       const callback = args[operationParams.length];
-      return steemBroadcast[`${operationName}With`](wif, options, callback);
+      return voilkBroadcast[`${operationName}With`](wif, options, callback);
     };
 });
 
 const toString = obj => typeof obj === 'object' ? JSON.stringify(obj) : obj;
-broadcastHelpers(steemBroadcast);
+broadcastHelpers(voilkBroadcast);
 
-Promise.promisifyAll(steemBroadcast);
+Promise.promisifyAll(voilkBroadcast);
 
-exports = module.exports = steemBroadcast;
+exports = module.exports = voilkBroadcast;

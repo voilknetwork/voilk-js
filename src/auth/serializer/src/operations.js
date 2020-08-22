@@ -1,13 +1,13 @@
 
-// This file is merge updated from steemd's js_operation_serializer program.
+// This file is merge updated from voilkd's js_operation_serializer program.
 /*
 
 ./js_operation_serializer |
 sed 's/void/future_extensions/g'|
-sed 's/steemit_protocol:://g'|
+sed 's/voilk_protocol:://g'|
 sed 's/14static_variantIJNS_12fixed_stringINSt3__14pairIyyEEEEEEE/string/g'|
-sed 's/steemit_future_extensions/future_extensions/g'|
-sed 's/steemit_protocol_//g' > tmp.coffee
+sed 's/voilk_future_extensions/future_extensions/g'|
+sed 's/voilk_protocol_//g' > tmp.coffee
 
 */
 // coffee tmp.coffee # fix errors until you see: `ChainTypes is not defined`
@@ -88,7 +88,7 @@ const allowed_vote_assets = new Serializer(1, {
 
 const smt_generation_unit = new Serializer(
   "smt_generation_unit", {
-  steem_unit: map((string), (uint16)),
+  voilk_unit: map((string), (uint16)),
   token_unit: map((string), (uint16))
 });
 
@@ -241,18 +241,18 @@ let transfer = new Serializer(
 }
 );
 
-let transfer_to_vesting = new Serializer(
-    "transfer_to_vesting", {
+let transfer_to_coining = new Serializer(
+    "transfer_to_coining", {
     from: string,
     to: string,
     amount: asset
 }
 );
 
-let withdraw_vesting = new Serializer(
-    "withdraw_vesting", {
+let withdraw_coining = new Serializer(
+    "withdraw_coining", {
     account: string,
-    vesting_shares: asset
+    coining_shares: asset
 }
 );
 
@@ -332,7 +332,7 @@ let chain_properties = new Serializer(
     "chain_properties", {
     account_creation_fee: asset,
     maximum_block_size: uint32,
-    sbd_interest_rate: uint16
+    vsd_interest_rate: uint16
 }
 );
 
@@ -407,7 +407,7 @@ let comment_options = new Serializer(
     author: string,
     permlink: string,
     max_accepted_payout: asset,
-    percent_steem_dollars: uint16,
+    percent_voilk_dollars: uint16,
     allow_votes: bool,
     allow_curation_rewards: bool,
     extensions: set(static_variant([
@@ -417,12 +417,12 @@ let comment_options = new Serializer(
 }
 );
 
-let set_withdraw_vesting_route = new Serializer(
-    "set_withdraw_vesting_route", {
+let set_withdraw_coining_route = new Serializer(
+    "set_withdraw_coining_route", {
     from_account: string,
     to_account: string,
     percent: uint16,
-    auto_vest: bool
+    auto_coin: bool
 }
 );
 
@@ -488,8 +488,8 @@ let escrow_transfer = new Serializer(
     "escrow_transfer", {
     from: string,
     to: string,
-    sbd_amount: asset,
-    steem_amount: asset,
+    vsd_amount: asset,
+    voilk_amount: asset,
     escrow_id: uint32,
     agent: string,
     fee: asset,
@@ -517,8 +517,8 @@ let escrow_release = new Serializer(
     who: string,
     receiver: string,
     escrow_id: uint32,
-    sbd_amount: asset,
-    steem_amount: asset
+    vsd_amount: asset,
+    voilk_amount: asset
 }
 );
 
@@ -629,17 +629,17 @@ let set_reset_account = new Serializer(
 let claim_reward_balance = new Serializer(
     "claim_reward_balance", {
     account: string,
-    reward_steem: asset,
-    reward_sbd: asset,
-    reward_vests: asset
+    reward_voilk: asset,
+    reward_vsd: asset,
+    reward_coins: asset
 }
 );
 
-let delegate_vesting_shares = new Serializer(
-    "delegate_vesting_shares", {
+let delegate_coining_shares = new Serializer(
+    "delegate_coining_shares", {
     delegator: string,
     delegatee: string,
-    vesting_shares: asset
+    coining_shares: asset
 }
 );
 
@@ -745,7 +745,7 @@ let smt_setup = new Serializer(
   contribution_begin_time: time_point_sec,
   contribution_end_time: time_point_sec,
   launch_time: time_point_sec,
-  steem_units_min: int64,
+  voilk_units_min: int64,
   min_unit_ratio: uint32,
   max_unit_ratio: uint32,
   extensions: set(future_extensions)
@@ -777,7 +777,7 @@ let smt_setup_ico_tier = new Serializer(
     "smt_setup_ico_tier", {
     control_account: string,
     symbol: asset_symbol,
-    steem_units_cap: int64,
+    voilk_units_cap: int64,
     generation_policy: static_variant([
         smt_capped_generation_policy
     ]),
@@ -834,9 +834,9 @@ let author_reward = new Serializer(
     "author_reward", {
     author: string,
     permlink: string,
-    sbd_payout: asset,
-    steem_payout: asset,
-    vesting_payout: asset
+    vsd_payout: asset,
+    voilk_payout: asset,
+    coining_payout: asset
 }
 );
 
@@ -871,8 +871,8 @@ let interest = new Serializer(
 }
 );
 
-let fill_vesting_withdraw = new Serializer(
-    "fill_vesting_withdraw", {
+let fill_coining_withdraw = new Serializer(
+    "fill_coining_withdraw", {
     from_account: string,
     to_account: string,
     withdrawn: asset,
@@ -918,10 +918,10 @@ let comment_payout_update = new Serializer(
 }
 );
 
-let return_vesting_delegation = new Serializer(
-    "return_vesting_delegation", {
+let return_coining_delegation = new Serializer(
+    "return_coining_delegation", {
     account: string,
-    vesting_shares: asset
+    coining_shares: asset
 }
 );
 
@@ -938,8 +938,8 @@ operation.st_operations = [
     vote,
     comment,
     transfer,
-    transfer_to_vesting,
-    withdraw_vesting,
+    transfer_to_coining,
+    withdraw_coining,
     limit_order_create,
     limit_order_cancel,
     feed_publish,
@@ -955,7 +955,7 @@ operation.st_operations = [
     delete_comment,
     custom_json,
     comment_options,
-    set_withdraw_vesting_route,
+    set_withdraw_coining_route,
     limit_order_create2,
     claim_account,
     create_claimed_account,
@@ -975,7 +975,7 @@ operation.st_operations = [
     reset_account,
     set_reset_account,
     claim_reward_balance,
-    delegate_vesting_shares,
+    delegate_coining_shares,
     account_create_with_delegation,
     witness_set_properties,
     account_update2,
@@ -997,13 +997,13 @@ operation.st_operations = [
     comment_reward,
     liquidity_reward,
     interest,
-    fill_vesting_withdraw,
+    fill_coining_withdraw,
     fill_order,
     shutdown_witness,
     fill_transfer_from_savings,
     hardfork,
     comment_payout_update,
-    return_vesting_delegation,
+    return_coining_delegation,
     comment_benefactor_reward
 ];
 

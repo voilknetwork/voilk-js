@@ -34,7 +34,7 @@ module.exports = [
   },
   {
     "roles": ["active", "owner"],
-    "operation": "transfer_to_vesting",
+    "operation": "transfer_to_coining",
     "params": [
       "from",
       "to",
@@ -43,10 +43,10 @@ module.exports = [
   },
   {
     "roles": ["active", "owner"],
-    "operation": "withdraw_vesting",
+    "operation": "withdraw_coining",
     "params": [
       "account",
-      "vesting_shares"
+      "coining_shares"
     ]
   },
   {
@@ -192,7 +192,7 @@ module.exports = [
       "author",
       "permlink",
       "max_accepted_payout",
-      "percent_steem_dollars",
+      "percent_voilk_dollars",
       "allow_votes",
       "allow_curation_rewards",
       "extensions"
@@ -200,12 +200,12 @@ module.exports = [
   },
   {
     "roles": ["active", "owner"],
-    "operation": "set_withdraw_vesting_route",
+    "operation": "set_withdraw_coining_route",
     "params": [
       "from_account",
       "to_account",
       "percent",
-      "auto_vest"
+      "auto_coin"
     ]
   },
   {
@@ -280,8 +280,8 @@ module.exports = [
       "to",
       "agent",
       "escrow_id",
-      "sbd_amount",
-      "steem_amount",
+      "vsd_amount",
+      "voilk_amount",
       "fee",
       "ratification_deadline",
       "escrow_expiration",
@@ -309,8 +309,8 @@ module.exports = [
       "who",
       "receiver",
       "escrow_id",
-      "sbd_amount",
-      "steem_amount"
+      "vsd_amount",
+      "voilk_amount"
     ]
   },
   {
@@ -401,18 +401,18 @@ module.exports = [
     "operation": "claim_reward_balance",
     "params": [
       "account",
-      "reward_steem",
-      "reward_sbd",
-      "reward_vests"
+      "reward_voilk",
+      "reward_vsd",
+      "reward_coins"
     ]
   },
   {
     "roles": ["active", "owner"],
-    "operation": "delegate_vesting_shares",
+    "operation": "delegate_coining_shares",
     "params": [
       "delegator",
       "delegatee",
-      "vesting_shares"
+      "coining_shares"
     ]
   },
   {
@@ -528,7 +528,7 @@ module.exports = [
       "contribution_begin_time",
       "contribution_end_time",
       "launch_time",
-      "steem_units_min",
+      "voilk_units_min",
       "min_unit_ratio",
       "max_unit_ratio",
       "extensions"
@@ -562,7 +562,7 @@ module.exports = [
     "params": [
       "control_account",
       "symbol",
-      "steem_units_cap",
+      "voilk_units_cap",
       "generation_policy",
       "remove",
       "extensions"
@@ -636,7 +636,7 @@ module.exports = [
   },
   {
     "roles": ["active", "owner"],
-    "operation": "fill_vesting_withdraw",
+    "operation": "fill_coining_withdraw",
     "params": [
       "from_account",
       "to_account",
