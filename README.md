@@ -1,5 +1,4 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/voilknetwork/voilk-js/blob/master/LICENSE)
-[![Voilk.js channel on voilknetwork.chat](https://img.shields.io/badge/chat-voilknetwork.chat-1c56a4.svg)](https://voilknetwork.chat/channel/voilkjs)
 
 # Voilk.js
 Voilk.js the JavaScript API for Voilk blockchain
@@ -31,6 +30,16 @@ Voilk.js the JavaScript API for Voilk blockchain
 Here is full documentation:
 https://github.com/voilknetwork/voilk-js/tree/master/doc
 
+## Generate voilk.min.js
+
+Clone the github repo, and compile it or just download the min file from latest release
+```
+git clone https://github.com/voilknetwork/voilk-js
+cd voilk-js
+npm run build
+```
+
+
 ## Browser
 ```html
 <script src="./voilk.min.js"></script>
@@ -41,11 +50,6 @@ voilk.api.getAccounts(['bilal', 'voilk'], function(err, response){
 </script>
 ```
 
-## CDN
-https://cdn.jsdelivr.net/npm/voilk/dist/voilk.min.js<br/>
-```html
-<script src="https://cdn.jsdelivr.net/npm/voilk/dist/voilk.min.js"></script>
-```
 
 ## Webpack
 [Please have a look at the webpack usage example.](https://github.com/voilknetwork/voilk-js/blob/master/examples/webpack-example)
@@ -58,8 +62,7 @@ $ npm install voilk --save
 
 ## RPC Servers
 https://api.voilknetwork.com By Default<br/>
-https://node.voilk.ws<br/>
-https://this.piston.rocks<br/>
+
 
 ## Examples
 ### Broadcast Vote
@@ -107,7 +110,8 @@ voilk.api.setOptions({
 The Chain ID could change. If it does, it may not be reflected here, but will be documented on any testnet launch announcements.
 
 ## Contributions
-Patches are welcome! Contributors are listed in the package.json file. Please run the tests before opening a pull request and make sure that you are passing all of them. If you would like to contribute, but don't know what to work on, check the issues list or on Voilknetwork Chat channel #voilkjs https://voilknetwork.chat/channel/voilkjs.
+Patches are welcome! Contributors are listed in the package.json file. Please run the tests before opening a pull request and make sure that you are passing all of them. If you would like to contribute, but don't know what to work on, check the issues list or talk to us at our discord group
+find link to join discord on https://voilk.com
 
 ## Issues
 When you find issues, please report them!
