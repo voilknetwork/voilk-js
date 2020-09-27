@@ -43,11 +43,11 @@ voilk.api.getAccounts(['bilal', 'voilk'], function(err, response) {
 ```
 - - - - - - - - - - - - - - - - - -
 ## Config
-Default config should work with voilk. however you can change it to work with golos by 
+Default config should work with voilk. however you can change it if you want. 
 ```js
-voilk.api.setOptions({ url: 'wss://ws.golos.io' }); // assuming websocket is working at ws.golos.io
-voilk.config.set('address_prefix','GLS');
-voilk.config.set('chain_id','782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12');
+voilk.api.setOptions({ url: 'https://api.voilk.com' }); // assuming websocket is working at ws.golos.io
+voilk.config.set('address_prefix','SHR');
+voilk.config.set('chain_id','3bd4b560d3b5e8de9444cb2e40ec7697fc28499dd7d9db9c14449d3576a7d323');
 ```
 - - - - - - - - - - - - - - - - - -
 ### set
@@ -63,7 +63,7 @@ voilk.config.get('chain_id');
 ## JSON-RPC
 Here is how to activate JSON-RPC transport:
 ```js
-voilk.api.setOptions({ url: 'https://api.voilknetwork.com' });
+voilk.api.setOptions({ url: 'https://api.voilk.com' });
 ```
 
 - - - - - - - - - - - - - - - - - -
